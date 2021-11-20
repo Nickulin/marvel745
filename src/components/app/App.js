@@ -3,39 +3,37 @@ import RandomChar from "../randomChar/RandomChar";
 import CharList from "../charList/CharList";
 import CharInfo from "../charInfo/CharInfo";
 import ErorrBoundary from "../errorBoundary/ErorrBoundary";
-import { Component } from "react";
+import { useState } from "react";
 
 import decoration from '../../resources/img/vision.png';
 
-class App extends Component {
-    state ={
-        selectedChar: null
-    }
+const App = () => {
 
-    onCharSelected = (id) =>{
-        this.setState({
-            selectedChar: id
-        })
+    const [selectedChar, setChar] = useState(null);
+    
+
+    const onCharSelected = (id) =>{
+            setChar(id)        
     }
-    render(){
-        return (
-            <div className="app">
-                <AppHeader/>
-                <main><ErorrBoundary>
-                    <RandomChar/>
-                </ErorrBoundary>                    
-                    <div className="char__content">
-                        <CharList onCharSelected={this.onCharSelected}/>                        
-                        <ErorrBoundary>
-                        <CharInfo charId = {this.state.selectedChar}/>   {/*state значит передаем в  CharInfo*/}
-                        </ErorrBoundary>
-                      
-                    </div>
-                    <img className="bg-decoration" src={decoration} alt="vision"/>
-                </main>
-            </div>
-        )
-    }
+    
+    return (
+        <div className="app">
+            <AppHeader/>
+            <main><ErorrBoundary>
+                <RandomChar/>
+            </ErorrBoundary>                    
+                <div className="char__content">
+                    <CharList onCharSelected={onCharSelected}/>                        
+                    <ErorrBoundary>
+                    <CharInfo charId = {selectedChar}/>   {/*state значит передаем в  CharInfo*/}
+                    </ErorrBoundary>
+                    
+                </div>
+                <img className="bg-decoration" src={decoration} alt="vision"/>
+            </main>
+        </div>
+    )
+    
     
 }
 

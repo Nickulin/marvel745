@@ -18,6 +18,7 @@ class MarvelService {
         const res = await this.getResource(`${this._apiBase}?limit=9&offset=${offset}&${this._apikey}`);
         return res.data.results.map(this._transformCharacter);
     }
+    
     getCharacter = async (id) => {
         // return this.getResource(`${this._apiBase}/${id}?${this._apikey}`); // было, возврат актуален для 1-го персонажа, но когда их много необходимо оптимизировать
         const res = await this.getResource(`${this._apiBase}/${id}?${this._apikey}`);
