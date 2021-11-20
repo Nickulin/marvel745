@@ -15,6 +15,10 @@ const CharList = (props) => {
    
 
     const marvelService = new MarvelService();
+    
+    useEffect(() => {
+        onRequest();
+    }, [])
 
     const onRequest = (offset) =>{
         onChatLoading();
